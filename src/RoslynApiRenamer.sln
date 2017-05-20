@@ -5,6 +5,12 @@ VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoslynApiRefactor", "RoslynApiRefactor\RoslynApiRefactor.csproj", "{9159F3D0-9D27-4C25-AE28-21E6D6E7D041}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{DCFC5D34-119C-408A-9680-3E2D504E10C7}"
+	ProjectSection(SolutionItems) = preProject
+		..\Xamarin.Forms\FixXamarinForms.cmd = ..\Xamarin.Forms\FixXamarinForms.cmd
+		..\Xamarin.Forms\RenameList.Xamarin.Forms.txt = ..\Xamarin.Forms\RenameList.Xamarin.Forms.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
