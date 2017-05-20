@@ -1,9 +1,9 @@
-﻿P:Xamarin.Forms.BindableObject.BindingContext;DataContext
-P:Xamarin.Forms.View.VerticalOptions;VerticalAlignment
-P:Xamarin.Forms.View.HorizontalOptions;HorizontalAlignment
-T:Xamarin.Forms.VisualElement;UIElement
+﻿T:Xamarin.Forms.VisualElement;UIElement
 T:Xamarin.Forms.View;FrameworkElement
 T:Xamarin.Forms.Label;TextBlock
 T:Xamarin.Forms.Entry;TextBox
 T:Xamarin.Forms.BindableProperty;DependencyProperty
 T:Xamarin.Forms.BindableObject;DependencyObject
+P:Xamarin.Forms.BindableObject.BindingContext;DataContext
+P:Xamarin.Forms.View.VerticalOptions;VerticalAlignment
+P:Xamarin.Forms.View.HorizontalOptions;HorizontalAlignment

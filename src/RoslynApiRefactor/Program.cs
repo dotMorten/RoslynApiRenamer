@@ -16,16 +16,33 @@ namespace RoslynApiRefactor
 
         static void Main(string[] args)
         {
-            // TODO: Make these arguments instead
-            RefactorSolution(@"c:\Github\Xamarin\Xamarin.Forms\Xamarin.Forms.sln", @"RenameList.Xamarin.Forms.txt");
+            if(args.Length < 3)
+            {
+                Console.WriteLine("Usage:\n\t [SolutionName] [ProjectName] [RenameList]");
+                return;
+            }
+            string solution = args[0];
+            string projectName = args[1];
+            string renameList = args[2];
+            if (!File.Exists(solution))
+            {
+                Console.WriteLine($"Solution '{solution}' not found");
+                return;
+            }
+            if (!File.Exists(renameList))
+            {
+                Console.WriteLine($"Rename list '{renameList}' not found");
+                return;
+            }
+            RefactorSolution(solution, projectName, renameList);
             Console.ReadKey();
         }
 
-        private static async void RefactorSolution(string pathToSolution, string renameList)
+        private static async void RefactorSolution(string pathToSolution, string projectName, string renameList)
         {
             MSBuildWorkspace workspace = MSBuildWorkspace.Create();
             solutionToAnalyze = await RunSpinnerAsync(workspace.OpenSolutionAsync(pathToSolution), "Loading solution... ");
-            sampleProjectToAnalyze = solutionToAnalyze.Projects.Where((proj) => proj.Name == "Xamarin.Forms.Core").FirstOrDefault();
+            sampleProjectToAnalyze = solutionToAnalyze.Projects.Where((proj) => proj.Name == projectName).FirstOrDefault();
 
             Compilation compilation = await RunSpinnerAsync(sampleProjectToAnalyze.GetCompilationAsync(), "Compiling project...");
 
@@ -80,7 +97,7 @@ namespace RoslynApiRefactor
                         if(symbol.Kind == SymbolKind.Property)
                         {
                             // check if dependency property, and if so fix field definition
-                            sampleProjectToAnalyze = sol.Projects.Where((proj) => proj.Name == "Xamarin.Forms.Core").FirstOrDefault();
+                            sampleProjectToAnalyze = sol.Projects.Where((proj) => proj.Name == projectName).FirstOrDefault();
                             compilation = await sampleProjectToAnalyze.GetCompilationAsync();
                             changed = false;
                             var dp = FindSymbol(className, propertyName + "Property", compilation.Assembly.GlobalNamespace) as IFieldSymbol;
